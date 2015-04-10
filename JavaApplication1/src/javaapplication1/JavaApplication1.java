@@ -5,7 +5,6 @@
  */
 package javaapplication1;
 
-import javax.swing.JFrame;
 
 
 /**
