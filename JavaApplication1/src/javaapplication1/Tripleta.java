@@ -51,4 +51,14 @@ public class Tripleta {
         return _y;
     }
     
+    public void setNum(int pnum){
+        _num = pnum;
+    }
+    public void setX(int px){
+        _x = px;
+    }
+    public void setY(int py){
+        _y = py;
+    }
+    
 }

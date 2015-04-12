@@ -20,6 +20,13 @@ public class Poli {
     public Tripleta getPoli(){
         return _head;
     }
+    
+    public Tripleta getTail(){
+        return _tail;
+    }
+    public void setTail(Tripleta ptail){
+        _tail = ptail;
+    }
    
     public void nuevaTripleta(Tripleta ptripleta){
             if(_head == null){
