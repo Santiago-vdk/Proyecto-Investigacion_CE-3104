@@ -22,10 +22,6 @@ public class Tripleta {
         _y = py;
         _next = null;
         _prev = null;
-        System.out.println("hola");
-        System.out.println(pnum);
-        System.out.println(px);
-        System.out.println(py);
     }
     
     public void setNext(Tripleta pnext){

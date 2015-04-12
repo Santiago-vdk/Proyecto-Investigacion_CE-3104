@@ -16,6 +16,25 @@ public class Facade {
         _operador = "";
     }
     
+    public void printPolis(){
+        Tripleta tmp1 = _poli1.getPoli();
+        Tripleta tmp2 = _poli2.getPoli();
+            while(tmp1 != null){
+                System.out.println("tripleta1");
+                System.out.println(tmp1.getNum());
+                System.out.println(tmp1.getX());
+                System.out.println(tmp1.getY());
+                tmp1 = tmp1.getNext();
+            }
+            while(tmp1 != null){
+                System.out.println("tripleta2");
+                System.out.println(tmp1.getNum());
+                System.out.println(tmp1.getX());
+                System.out.println(tmp1.getY());
+                tmp1 = tmp1.getNext();
+            }
+    }
+    
     public void borrarOperando(){
         if(_poli2.getPoli()!=null){
             _poli2=new Poli();
@@ -49,7 +68,7 @@ public class Facade {
                         }
                         tmp1 = tmp1.getNext();
                     }
-                    if(tmp1 == null){//cuando no aparece esa triplata la agrega 
+                    if(flag){//cuando no aparece esa triplata la agrega 
                         Tripleta copia = new Tripleta(tmp2.getNum(),tmp2.getX(),tmp2.getY());
                         _poli1.getTail().setNext(copia);
                         copia.setPrev(_poli1.getTail());
@@ -71,7 +90,7 @@ public class Facade {
                         }
                         tmp1 = tmp1.getNext();
                     }
-                    if(tmp1 == null){//cuando no aparece esa triplata la agrega 
+                    if(flag){//cuando no aparece esa triplata la agrega 
                         Tripleta copia = new Tripleta(-(tmp2.getNum()),tmp2.getX(),tmp2.getY());
                         _poli1.getTail().setNext(copia);
                         copia.setPrev(_poli1.getTail());
@@ -93,18 +112,22 @@ public class Facade {
                         tmp1 = tmp1.getNext();
                     }
                     politmp1 = sumarPolis(politmp1,politmp2);
+                    tmp1 = _poli1.getPoli();
                     tmp2 = tmp2.getNext();
                     }
+                _poli1 = politmp1;
                 _poli2 = new Poli();//reseteo el segundo operando
             }
         }
         else{
             //error
         }
+        System.out.println(PoliToString(_poli1));
         return "";
     }
     
     public Poli sumarPolis(Poli ppoli1,Poli ppoli2){
+        
         Tripleta tmp1 = ppoli1.getPoli();
         Tripleta tmp2 = ppoli2.getPoli();
                 while(tmp2!=null){
@@ -116,15 +139,36 @@ public class Facade {
                         }
                         tmp1 = tmp1.getNext();
                     }
-                    if(tmp1 == null){//cuando no aparece esa triplata la agrega 
+                    if(flag){//cuando no aparece esa triplata la agrega 
                         Tripleta copia = new Tripleta(tmp2.getNum(),tmp2.getX(),tmp2.getY());
-                        ppoli1.getTail().setNext(copia);
-                        copia.setPrev(ppoli1.getTail());
-                        ppoli1.setTail(copia);
+                        if(ppoli1.getTail()!= null){
+                            ppoli1.getTail().setNext(copia);
+                            copia.setPrev(ppoli1.getTail());
+                            ppoli1.setTail(copia);
+                        }
+                        else{
+                            ppoli1.nuevaTripleta(copia);
+                        }
                     }
+                    tmp1 = ppoli1.getPoli();
                     tmp2 = tmp2.getNext();
                 }
                 return ppoli1;
+    }
+    
+    public String PoliToString(Poli ppoli){
+        Tripleta tmp =ppoli.getPoli();
+        String result = "";
+        while(tmp != null){
+            result += tmp.getNum();
+            result += " ";
+            result += tmp.getX();
+            result += " ";
+            result += tmp.getY();
+            result += "|";
+            tmp = tmp.getNext();
+        }
+        return result;
     }
     
     public int eval(String pvalores){

@@ -27,7 +27,6 @@ public class Poli {
     public void setTail(Tripleta ptail){
         _tail = ptail;
     }
-   
     public void nuevaTripleta(Tripleta ptripleta){
             if(_head == null){
                 _head = ptripleta;
